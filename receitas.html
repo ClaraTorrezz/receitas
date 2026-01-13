@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receitas</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #fff3e0, #f7f7f7);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    background-color: white;
+    padding: 30px 25px;
+    margin: 30px auto;
+    max-width: 950px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+h1, h2, h3, h4 {
+    color: #ff6f61;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+p {
+    color: #555;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #ffb347;
+    color: white;
+    padding: 14px;
+    font-size: 16px;
+}
+
+td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+}
+
+#imagens {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.recipe-img {
+    width: 210px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.recipe-img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+#infoReceita {
+    background-color: #fff8f0;
+    border: 2px dashed #ffcc80;
+    border-radius: 14px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#infoReceita ul, #infoReceita ol {
+    display: inline-block;
+    text-align: left;
+    padding-left: 22px;
+    margin-bottom: 15px;
+}
+
+iframe {
+    width: 100%;
+    max-width: 600px;
+    height: 340px;
+    margin-top: 20px;
+    border-radius: 14px;
+    border: none;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input, textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    padding: 14px 30px;
+    font-size: 16px;
+    background: linear-gradient(120deg, #ff6f61, #ff8a65);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: linear-gradient(120deg, #ff4b3e, #ff7043);
+    transform: scale(1.05);
+}
+
+audio {
+    margin-top: 15px;
+    width: 100%;
+    max-width: 500px;
+}
+
+@media (max-width: 768px){
+    .recipe-img { width: 150px; }
+    iframe { height: 250px; }
+}
+</style>
+</head>
+<body>
+
+<section>
+<h2>Tabela de Receitas</h2>
+<p>Consulta rapidamente as receitas disponíveis.</p>
+<table>
+<tr>
+<th>Receita</th>
+<th>Dificuldade</th>
+<th>Tempo</th>
+</tr>
+<tr><td>Salada de Frango</td><td>Fácil</td><td>15 min</td></tr>
+<tr><td>Panquecas</td><td>Fácil</td><td>20 min</td></tr>
+<tr><td>Bolo de Chocolate</td><td>Média</td><td>50 min</td></tr>
+</table>
+</section>
+
+<section>
+<h2>Escolhe uma receita</h2>
+<p>Clica numa imagem para ver a receita completa.</p>
+<div id="imagens">
+<img class="recipe-img" src="bolo.jpg" onclick="mostrarReceita('bolo')">
+<img class="recipe-img" src="salada de frango.jpg" onclick="mostrarReceita('salada')">
+<img class="recipe-img" src="panquecas.jpg" onclick="mostrarReceita('panquecas')">
+</div>
+</section>
+
+<section id="infoReceita">
+<h3>Área da Receita</h3>
+<p>Clica numa imagem acima para ver os ingredientes, modo de preparo e vídeo.</p>
+</section>
+
+<section>
+<h2>Formulário</h2>
+<p>Diz-nos a tua opinião.</p>
+<form action="mailto:a.20230122@esmsarmento.pt" method="post" enctype="text/plain">
+<input type="text" name="Nome" placeholder="Nome" required><br>
+<input type="email" name="Email" placeholder="Email" required><br>
+<input type="text" name="Receita" placeholder="Receita favorita"><br>
+<textarea name="Mensagem" placeholder="Mensagem"></textarea><br>
+<button type="submit">Enviar</button>
+</form>
+</section>
+
+<section>
+<h2>Áudio</h2>
+<p>Obrigado por visitares o site.</p>
+<audio controls>
+<source src="obrigado.mp3" type="audio/mpeg">
+</audio>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+let dadosExcel = [];
+
+function mostrarReceita(tipo) {
+    let html = "";
+    dadosExcel = [];
+
+    if(tipo=="bolo"){
+        html = `
+        <h2>Bolo de Chocolate</h2>
+        <h3>Ingredientes</h3>
+        <ul>
+            <li>2 chávenas de farinha</li>
+            <li>1 chávena de açúcar</li>
+            <li>1 chávena de chocolate em pó</li>
+            <li>2 ovos</li>
+            <li>1 chávena de leite</li>
+        </ul>
+        <h3>Modo de preparo</h3>
+        <ol>
+            <li>Pré-aquece o forno a 180 °C</li>
+            <li>Mistura os ingredientes secos</li>
+            <li>Adiciona ovos e leite</li>
+            <li>Coloca numa forma untada</li>
+            <li>Leva ao forno por 40-50 minutos</li>
+        </ol>
+		<br>
+        <iframe src="https://www.youtube.com/embed/hCJ88iGEQeI" allowfullscreen></iframe><br>
+        <button onclick="exportarExcel()">Exportar receita para Excel</button>
+        `;
+        dadosExcel = [
+            ["Bolo de Chocolate"],["Ingredientes"],
+            ["Farinha","2 chávenas"],["Açúcar","1 chávena"],
+            ["Chocolate","1 chávena"],["Ovos","2"],["Leite","1 chávena"],
+            [],["Modo de preparo"],
+            ["1","Pré-aquece o forno"],["2","Mistura secos"],
+            ["3","Adiciona ovos e leite"],["4","Coloca na forma"],
+            ["5","Leva ao forno"]
+        ];
+    }
+
+    if(tipo=="salada"){
+        html = `
+        <h2>Salada de Frango</h2>
+        <h3>Ingredientes</h3>
+        <ul>
+            <li>1 peito de frango</li>
+            <li>Alface</li>
+            <li>Tomate</li>
+            <li>Cenoura</li>
+            <li>Azeite e sal</li>
+        </ul>
+        <h3>Modo de preparo</h3>
+        <ol>
+            <li>Cozinha o frango</li>
+            <li>Desfia</li>
+            <li>Corta os legumes</li>
+            <li>Mistura e tempera</li>
+        </ol>
+		<br>
+        <iframe src="https://www.youtube.com/embed/9c4n8n3Qf6g" allowfullscreen></iframe><br>
+        <button onclick="exportarExcel()">Exportar receita para Excel</button>
+        `;
+    }
+
+    if(tipo=="panquecas"){
+        html = `
+        <h2>Panquecas</h2>
+        <h3>Ingredientes</h3>
+        <ul>
+            <li>1 chávena de farinha</li>
+            <li>2 ovos</li>
+            <li>1 chávena de leite</li>
+            <li>1 colher de açúcar</li>
+        </ul>
+        <h3>Modo de preparo</h3>
+        <ol>
+            <li>Mistura tudo</li>
+            <li>Aquece a frigideira</li>
+            <li>Cozinha dos dois lados</li>
+        </ol>
+		<br>
+        <iframe src="https://www.youtube.com/embed/sG9hP0G9XyQ" allowfullscreen></iframe><br>
+        <button onclick="exportarExcel()">Exportar receita para Excel</button>
+        `;
+    }
+
+    document.getElementById("infoReceita").innerHTML = html;
+}
+
+function exportarExcel(){
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet(dadosExcel);
+    XLSX.utils.book_append_sheet(wb, ws, "Receita");
+    XLSX.writeFile(wb,"receita.xlsx");
+}
+</script>
+
+</body>
+</html>

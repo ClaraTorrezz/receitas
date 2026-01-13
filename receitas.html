@@ -29,14 +29,8 @@ h1, h2, h3, h4 {
     color: #ff6f61;
 }
 
-h2 {
-    font-size: 28px;
-}
-
-p {
-    color: #555;
-    font-size: 16px;
-}
+h2 { font-size: 28px; }
+p { color: #555; font-size: 16px; }
 
 table {
     width: 100%;
@@ -102,10 +96,7 @@ iframe {
     border: none;
 }
 
-form {
-    margin-top: 20px;
-}
-
+form { margin-top: 20px; }
 input, textarea {
     width: 80%;
     padding: 10px;
@@ -166,9 +157,9 @@ audio {
 <h2>Escolhe uma receita</h2>
 <p>Clica numa imagem para ver a receita completa.</p>
 <div id="imagens">
-<img class="recipe-img" src="bolo.jpg" onclick="mostrarReceita('bolo')">
-<img class="recipe-img" src="salada de frango.jpg" onclick="mostrarReceita('salada')">
-<img class="recipe-img" src="panquecas.jpg" onclick="mostrarReceita('panquecas')">
+<img class="recipe-img" src="bolo.jpg" onclick="mostrarReceita('bolo')" alt="Bolo de Chocolate">
+<img class="recipe-img" src="salada de frango.jpg" onclick="mostrarReceita('salada')" alt="Salada de Frango">
+<img class="recipe-img" src="panquecas.jpg" onclick="mostrarReceita('panquecas')" alt="Panquecas">
 </div>
 </section>
 
@@ -224,8 +215,8 @@ function mostrarReceita(tipo) {
             <li>Coloca numa forma untada</li>
             <li>Leva ao forno por 40-50 minutos</li>
         </ol>
-		<br>
-        <iframe src="https://www.youtube.com/embed/hCJ88iGEQeI" allowfullscreen></iframe><br>
+        <br>
+        <iframe src="https://www.youtube.com/embed/yLbw8TyUyrA" allowfullscreen></iframe><br>
         <button onclick="exportarExcel()">Exportar receita para Excel</button>
         `;
         dadosExcel = [
@@ -257,8 +248,8 @@ function mostrarReceita(tipo) {
             <li>Corta os legumes</li>
             <li>Mistura e tempera</li>
         </ol>
-		<br>
-        <iframe src="https://www.youtube.com/embed/9c4n8n3Qf6g" allowfullscreen></iframe><br>
+        <br>
+        <iframe src="https://www.youtube.com/embed/xMGgo3Sg0Wc" allowfullscreen></iframe><br>
         <button onclick="exportarExcel()">Exportar receita para Excel</button>
         `;
     }
@@ -279,8 +270,8 @@ function mostrarReceita(tipo) {
             <li>Aquece a frigideira</li>
             <li>Cozinha dos dois lados</li>
         </ol>
-		<br>
-        <iframe src="https://www.youtube.com/embed/sG9hP0G9XyQ" allowfullscreen></iframe><br>
+        <br>
+        <iframe src="https://www.youtube.com/embed/FE3xJG_NTLw" allowfullscreen></iframe><br>
         <button onclick="exportarExcel()">Exportar receita para Excel</button>
         `;
     }

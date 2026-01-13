@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receitas Simples</title>
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    #capa {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* tela cheia */
+        cursor: pointer;
+        overflow: hidden;
+    }
+    #capa img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(65%);
+    }
+    .capa-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 20px;
+    }
+    .capa-content h1 { font-size: 64px; text-shadow:2px2px12px rgba(0,0,0,0.7); margin-bottom:20px; }
+    .capa-content p { font-size: 24px; text-shadow:1px1px8px rgba(0,0,0,0.6); max-width:800px; }
+    @media(max-width:768px){
+        .capa-content h1 { font-size:48px; }
+        .capa-content p { font-size:18px; }
+    }
+</style>
+</head>
+<body>
+
+<section id="capa" onclick="window.location.href='receitas.html'">
+    <img src="capa.jpg" alt="Capa">
+    <div class="capa-content">
+        <h1>Receitas Simples</h1>
+        <p>Pratos fáceis, rápidos e deliciosos para todos os dias.</p>
+    </div>
+</section>
+
+</body>
+</html>
+
